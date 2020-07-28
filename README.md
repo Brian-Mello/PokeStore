@@ -29,4 +29,4 @@ Por ser um projeto com ReactJS, há a necessidade do NodeJS. Com ele em sua máq
 1. `npm run test` ou `yarn test` para rodas os testes feitos;
 
 ## Deploy do projeto
-link do deploy: ******
+link do deploy: ***https://b2wpokestore.netlify.app/***
