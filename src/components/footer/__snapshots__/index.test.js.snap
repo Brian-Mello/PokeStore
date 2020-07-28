@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testando integridade do Footer component  Footer snapshot 1`] = `
+<header
+  className="sc-AxjAm cLFrOt"
+>
+  <p
+    className="sc-AxirZ bIKXRc"
+  >
+    Copyright © 
+    2020
+     
+    <b>
+      Brian Mello design Limited.
+    </b>
+  </p>
+</header>
+`;

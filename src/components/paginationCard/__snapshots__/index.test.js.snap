@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testando integridade da Pagination card component  Pagination card snapshot 1`] = `
+<div
+  className="sc-AxiKw kdNFlC"
+>
+  <div
+    className="sc-AxgMl celCAs"
+  >
+    <div
+      className="sc-AxheI kZkVEU"
+    />
+    <div
+      className="sc-AxmLO fdRSyf"
+    >
+      <b />
+    </div>
+    <div
+      className="sc-Axmtr hShZhH"
+    />
+  </div>
+</div>
+`;

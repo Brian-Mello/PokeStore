@@ -1,0 +1,353 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testando integridade do App Container  App snapshot 1`] = `
+<div
+  className="sc-AxjAm gfHtam"
+>
+  <header
+    className="sc-fznyAO llLWmw"
+    color="rgba(186, 80, 30, 0.7)"
+  >
+    <div
+      className="sc-fznKkj kLuosK"
+    >
+      <div
+        className="sc-fzqNJr ekDxAf"
+        fontFamily="'Permanent Marker', cursive"
+      >
+        <h1
+          className="sc-fzoLag dNgHKr"
+        >
+          FIRE STORE
+        </h1>
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="sc-fznZeY LciES"
+    >
+      <div
+        className="MuiFormControl-root MuiTextField-root sc-fzqBZW dVqlwl"
+      >
+        <div
+          className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          onClick={[Function]}
+        >
+          <div
+            className="MuiInputAdornment-root MuiInputAdornment-positionStart"
+          >
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+              />
+            </svg>
+          </div>
+          <input
+            aria-invalid={false}
+            autoFocus={false}
+            className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            disabled={false}
+            id="outlined-basic"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="Charizard, Charmander..."
+            required={false}
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden={true}
+            className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+            style={
+              Object {
+                "paddingLeft": 8,
+              }
+            }
+          >
+            <legend
+              className="PrivateNotchedOutline-legend-2"
+              style={
+                Object {
+                  "width": 0.01,
+                }
+              }
+            >
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "&#8203;",
+                  }
+                }
+              />
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-fzokOt eTSmPo"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-fzoXzr kbEQjw MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Water Store
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </header>
+  <div
+    className="sc-AxirZ kxSjdD"
+  >
+    <div
+      className="sc-AxiKw cNMIDB"
+    >
+      <div
+        className="sc-AxhCb ivCcgO"
+      >
+        <h1
+          className="sc-fzozJi hPjOTs"
+        >
+          Catálogo
+        </h1>
+        <div
+          className="sc-AxhUy bMhTFY"
+        >
+          <div
+            className="MuiFormControl-root makeStyles-formControl-5"
+          >
+            <label
+              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink={true}
+              id="selectLabel"
+            >
+              Order by
+            </label>
+            <div
+              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+              onClick={[Function]}
+            >
+              <div
+                aria-haspopup="listbox"
+                aria-labelledby="selectLabel"
+                className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                role="button"
+                tabIndex={0}
+              >
+                Selecione
+              </div>
+              <input
+                aria-hidden={true}
+                className="MuiSelect-nativeInput"
+                onAnimationStart={[Function]}
+                onChange={[Function]}
+                required={false}
+                tabIndex={-1}
+                value="Selecione"
+              />
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root MuiSelect-icon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="MuiFormControl-root makeStyles-formControl-5"
+          >
+            <label
+              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+              data-shrink={true}
+              id="selectLabel"
+            >
+              Order type
+            </label>
+            <div
+              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+              onClick={[Function]}
+            >
+              <div
+                aria-haspopup="listbox"
+                aria-labelledby="selectLabel"
+                className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                role="button"
+                tabIndex={0}
+              >
+                Selecione
+              </div>
+              <input
+                aria-hidden={true}
+                className="MuiSelect-nativeInput"
+                onAnimationStart={[Function]}
+                onChange={[Function]}
+                required={false}
+                tabIndex={-1}
+                value="Selecione"
+              />
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root MuiSelect-icon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-Axmtr rgSvs"
+      >
+        Pokémon não encontrado!
+      </div>
+    </div>
+    <div
+      className="sc-fzoKki cDjNBN"
+    >
+      <div
+        className="sc-fzoYkl kBljBj"
+      >
+        <h2
+          className="sc-fzqAbL krBPOE"
+        >
+          Carrinho
+        </h2>
+      </div>
+      <div
+        className="sc-fzpkJw etUSxo"
+      >
+        <div
+          className="sc-fznzOf gOcIvg"
+        >
+          <div
+            className="sc-fzpkqZ jHORHZ"
+          >
+            Carrinho está vazio!
+          </div>
+        </div>
+        <div
+          className="sc-fznMnq dtnrDf"
+        >
+          <div
+            className="sc-fzoant eZJRyZ"
+          >
+            <h2
+              className="sc-fzqAbL krBPOE"
+            >
+              Valor Total
+            </h2>
+            <h2
+              className="sc-fzqAbL krBPOE"
+            >
+              R$ 
+              0
+              ,00
+            </h2>
+          </div>
+          <div
+            className="sc-fzomME fwYhvL"
+          >
+            <button
+              className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-fznAgC dYhssv Mui-disabled Mui-disabled"
+              disabled={true}
+              onBlur={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={-1}
+              type="button"
+            >
+              <span
+                className="MuiButton-label"
+              >
+                Finalizar
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header
+    className="sc-fzpans cyUrCf"
+    color="rgba(186, 80, 30, 0.8)"
+  >
+    <p
+      className="sc-fzplWN eVXrCV"
+    >
+      Copyright © 
+      2020
+       
+      <b>
+        Brian Mello design Limited.
+      </b>
+    </p>
+  </header>
+</div>
+`;
