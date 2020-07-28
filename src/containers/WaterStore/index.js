@@ -4,7 +4,7 @@ import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import { v4 } from "uuid";
 import { getPokemonByType, updatePokemonInWaterStoreCart } from "../../actions";
-import { ProductsComponent, StoreComponent, Main, PagesComponent, PokemonWaterCatalog, ProductsComponentHeader, SectionName, OrdernationSection, EmptyCatalogMessage, Icon } from "../../style/globalStyled";
+import { ProductsComponent, StoreComponent, Main, PagesComponent, PokemonWaterCatalog, ProductsComponentHeader, SectionName, OrdernationSection, Icon } from "../../style/globalStyled";
 import { orderByList, orderTypeList} from '../ordenationObjects';
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -15,6 +15,7 @@ import SelectUI from "../../components/selectUi";
 import FloatCartButton from "../../components/floatCartButton";
 import CartContainer from '../WaterStoreCartContainer';
 import waterLogo from '../../images/waterLogo.png'
+import Loader from "../../components/loader";
 
 export class WaterStore extends React.Component {
     constructor(props){
@@ -176,7 +177,7 @@ export class WaterStore extends React.Component {
         )
 
         if(filterPokemon.length === 0){
-            waterStoreCatalogRender = (<EmptyCatalogMessage>Pokémon não encontrado!</EmptyCatalogMessage>)
+            waterStoreCatalogRender = (<Loader/>)
         } else if(filterPokemon.length > 0){
             waterStoreCatalogRender = ( 
             <> 
@@ -204,6 +205,7 @@ export class WaterStore extends React.Component {
                     fontFamily="'Ranchers', cursive"
                     inputStyle="standard"
                     icon={<Icon src={waterLogo}/>}
+                    goToHome={goToFireStore}
                 />
                 <Main>
                     <ProductsComponent 

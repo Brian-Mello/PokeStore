@@ -4,7 +4,7 @@ import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import { v4 } from "uuid";
 import { getPokemonByType, updatePokemonInFireStoreCart } from "../../actions";
-import { ProductsComponent, StoreComponent, Main, PagesComponent, PokemonFireCatalog, ProductsComponentHeader, SectionName, OrdernationSection, EmptyCatalogMessage } from "../../style/globalStyled";
+import { ProductsComponent, StoreComponent, Main, PagesComponent, PokemonFireCatalog, ProductsComponentHeader, SectionName, OrdernationSection } from "../../style/globalStyled";
 import { orderByList, orderTypeList} from '../ordenationObjects';
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import SelectUI from "../../components/selectUi";
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import FireStoreCartContainer from "../FireStoreCartContainer";
+import Loader from "../../components/loader";
 
 
 export class FireStore extends React.Component {
@@ -83,7 +84,7 @@ export class FireStore extends React.Component {
 
     render(){
       const { page, orderBy, orderType, search } = this.state
-      const { allFirePokemon, goToWaterStore } = this.props
+      const { allFirePokemon, goToWaterStore, goToFireStore } = this.props
 
       const numberOfPages = allFirePokemon.length / 12;
 
@@ -165,9 +166,9 @@ export class FireStore extends React.Component {
           onClickAddButton={() => this.addPokemonInCart(pokemon.name, pokemon.value)}
         />
       )
-      
+
       if(filterPokemon.length === 0){
-        fireStoreCatalogRender = (<EmptyCatalogMessage>Pokémon não encontrado!</EmptyCatalogMessage>)
+        fireStoreCatalogRender = (<Loader/>)
       } else if(filterPokemon.length > 0){
         fireStoreCatalogRender = ( 
           <> 
@@ -196,7 +197,7 @@ export class FireStore extends React.Component {
             fontFamily="'Permanent Marker', cursive"
             inputStyle="outlined"
             icon={<WhatshotIcon/>}
-            position='sticky'
+            goToHome={goToFireStore}
           />
           <Main>
             <ProductsComponent
@@ -237,7 +238,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getFirePokemon: (typeId) => dispatch(getPokemonByType(typeId)),
   updatePokemonInFireStoreCart: (pokemon) => dispatch(updatePokemonInFireStoreCart(pokemon)),
-  goToWaterStore: () => dispatch(push(routes.waterStore))
+  goToWaterStore: () => dispatch(push(routes.waterStore)),
+  goToFireStore: () => dispatch(push(routes.home))
 })
 
 export default connect(

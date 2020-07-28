@@ -124,16 +124,6 @@ export const PokemonWaterCatalog = styled.div `
     }
 `
 
-export const EmptyCatalogMessage = styled.div `
-    width: 100%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    font-size: 30px;
-`
-
 export const PagesComponent = styled.div `
     width: 100%;
     height: 20%;

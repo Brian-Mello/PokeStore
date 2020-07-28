@@ -6,9 +6,9 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 function Header(props) {
     return (
-        <HeaderComponent color={props.color} position={props.position}>
+        <HeaderComponent color={props.color}>
             <HeaderLogoComponent>
-                <Logo fontFamily={props.fontFamily}>
+                <Logo onClick={props.goToHome} fontFamily={props.fontFamily}>
                     <Title>{props.pageName}</Title>
                     {props.icon}
                 </Logo>

@@ -5,18 +5,19 @@ exports[`testando integridade do App Container  App snapshot 1`] = `
   className="sc-AxjAm gfHtam"
 >
   <header
-    className="sc-fznyAO llLWmw"
+    className="sc-fzplWN jNzePg"
     color="rgba(186, 80, 30, 0.7)"
   >
     <div
-      className="sc-fznKkj kLuosK"
+      className="sc-fznyAO fiZVuX"
     >
       <div
-        className="sc-fzqNJr ekDxAf"
+        className="sc-fzqBZW jKNree"
         fontFamily="'Permanent Marker', cursive"
+        onClick={[Function]}
       >
         <h1
-          className="sc-fzoLag dNgHKr"
+          className="sc-fzoyAV eVIAzH"
         >
           FIRE STORE
         </h1>
@@ -33,10 +34,10 @@ exports[`testando integridade do App Container  App snapshot 1`] = `
       </div>
     </div>
     <div
-      className="sc-fznZeY LciES"
+      className="sc-fznKkj jKFaoq"
     >
       <div
-        className="MuiFormControl-root MuiTextField-root sc-fzqBZW dVqlwl"
+        className="MuiFormControl-root MuiTextField-root sc-fzokOt cwlnwk"
       >
         <div
           className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
@@ -101,10 +102,10 @@ exports[`testando integridade do App Container  App snapshot 1`] = `
       </div>
     </div>
     <div
-      className="sc-fzokOt eTSmPo"
+      className="sc-fznZeY jCSweL"
     >
       <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-fzoXzr kbEQjw MuiButton-containedPrimary"
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-fzoLag hqmPeq MuiButton-containedPrimary"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -149,7 +150,7 @@ exports[`testando integridade do App Container  App snapshot 1`] = `
         className="sc-AxhCb ivCcgO"
       >
         <h1
-          className="sc-fzozJi hPjOTs"
+          className="sc-AxmLO dxIZxp"
         >
           Catálogo
         </h1>
@@ -255,48 +256,67 @@ exports[`testando integridade do App Container  App snapshot 1`] = `
         </div>
       </div>
       <div
-        className="sc-Axmtr rgSvs"
+        className="sc-fzoJus eRLqfI"
       >
-        Pokémon não encontrado!
+        <svg
+          height="150"
+          viewBox="0 0 40 60"
+          width="150"
+        >
+          <polygon
+            className="sc-fzowVh FzuXe"
+            fill="none"
+            points="16,1 32,32 1,32"
+            stroke="black"
+          />
+          <text
+            className="sc-fzqMdD jalBLO"
+            fill="black"
+            x="4"
+            y="45"
+          >
+            Loading
+          </text>
+        </svg>
       </div>
     </div>
     <div
-      className="sc-fzoKki cDjNBN"
+      className="sc-fzoxKX ivvZf"
     >
       <div
-        className="sc-fzoYkl kBljBj"
+        className="sc-fzoKki hrJnXE"
       >
         <h2
-          className="sc-fzqAbL krBPOE"
+          className="sc-fzomME hNqtAc"
         >
           Carrinho
         </h2>
       </div>
       <div
-        className="sc-fzpkJw etUSxo"
+        className="sc-fzoYkl jcWA-dX"
       >
         <div
-          className="sc-fznzOf gOcIvg"
+          className="sc-fzpkJw beVQqr"
         >
           <div
-            className="sc-fzpkqZ jHORHZ"
+            className="sc-fzoYHE ebwMku"
           >
             Carrinho está vazio!
           </div>
         </div>
         <div
-          className="sc-fznMnq dtnrDf"
+          className="sc-fznzOf htWrqi"
         >
           <div
-            className="sc-fzoant eZJRyZ"
+            className="sc-fznMnq cphFul"
           >
             <h2
-              className="sc-fzqAbL krBPOE"
+              className="sc-fzomME hNqtAc"
             >
               Valor Total
             </h2>
             <h2
-              className="sc-fzqAbL krBPOE"
+              className="sc-fzomME hNqtAc"
             >
               R$ 
               0
@@ -304,10 +324,10 @@ exports[`testando integridade do App Container  App snapshot 1`] = `
             </h2>
           </div>
           <div
-            className="sc-fzomME fwYhvL"
+            className="sc-fzoant lgsiMV"
           >
             <button
-              className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-fznAgC dYhssv Mui-disabled Mui-disabled"
+              className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-fzpkqZ iDFOCw Mui-disabled Mui-disabled"
               disabled={true}
               onBlur={[Function]}
               onDragLeave={[Function]}
@@ -335,11 +355,11 @@ exports[`testando integridade do App Container  App snapshot 1`] = `
     </div>
   </div>
   <header
-    className="sc-fzpans cyUrCf"
+    className="sc-fzoLsD gWCheD"
     color="rgba(186, 80, 30, 0.8)"
   >
     <p
-      className="sc-fzplWN eVXrCV"
+      className="sc-fzpans jPlCYE"
     >
       Copyright © 
       2020

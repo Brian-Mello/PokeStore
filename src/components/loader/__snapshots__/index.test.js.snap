@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testando integridade do Loader component  Loader snapshot 1`] = `
+<div
+  className="sc-AxiKw guiDHr"
+>
+  <svg
+    height="150"
+    viewBox="0 0 40 60"
+    width="150"
+  >
+    <polygon
+      className="sc-AxirZ kMUHWQ"
+      fill="none"
+      points="16,1 32,32 1,32"
+      stroke="black"
+    />
+    <text
+      className="sc-AxjAm lcmTQl"
+      fill="black"
+      x="4"
+      y="45"
+    >
+      Loading
+    </text>
+  </svg>
+</div>
+`;
