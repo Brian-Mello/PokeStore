@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 export const CartComponent = styled.div `
     width: 19%;
     min-width: 250px;
-    height: 100%;
-    min-height: 900px;
+    height: 50%;
+    min-height: 700px;
     background-color: #ffffff;
     box-shadow: 1px 1px 4px #b7b7b7;
     padding: 5px 10px;
@@ -55,9 +55,9 @@ export const CartBody = styled.div `
 `
 export const CartItemsListSection = styled.div `
     width: 100%;
-    height: 80%;
-    min-height: 700px;
-    max-height: 700px;
+    height: 85%;
+    min-height: 450px;
+    max-height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -80,7 +80,7 @@ export const CartItemsListSection = styled.div `
 
 export const CartPaymentSection = styled.div `
     width: 100%;
-    height: 20%;
+    height: 25%;
     min-height: 150px;
     display: flex;
     flex-direction: column;

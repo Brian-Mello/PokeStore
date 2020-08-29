@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { updatePokemonInFireStoreCart } from '../../actions';
 import { Text } from '../../components/pokemonCard/styled';
 import CloseIcon from '@material-ui/icons/Close';
-import { CartBody, StyledCheckoutButton } from './styled'
+import { CartBody, StyledCheckoutButton } from './styled';
 import { CartComponent, SectionTitle, CartHeader, CartItemsListSection, CartPaymentSection, CartItemComponent, CartIsEmptyMessage, CartItemDeleteButton, PaymentValueSection, PaymentButtonSection, CartItemName, CartItemValue } from './styled';
 import CheckoutModal from '../../components/checkoutModal';
+import ClearCartButton from '../../components/ClearCartButton';
 
 export class FireStoreCartContainer extends React.Component {
     constructor(props){
@@ -16,35 +17,71 @@ export class FireStoreCartContainer extends React.Component {
     }
 
     removePokemonFromCart = (idToRemove) => {
-        const { fireStoreCartList, updatePokemonInFireStoreCart } = this.props
-        const pokemonCartListCopy = [...fireStoreCartList]
+        const {  updatePokemonInFireStoreCart } = this.props
 
-        pokemonCartListCopy.splice(idToRemove, 1)
-        updatePokemonInFireStoreCart(pokemonCartListCopy)
+        const fireCartListString = localStorage.getItem("fireStoreCartList")
+
+        const savedFireCartList = JSON.parse(fireCartListString)
+
+        const fireCartListCopy = [...savedFireCartList]
+
+        fireCartListCopy.splice(idToRemove, 1)
+        
+        localStorage.setItem("fireStoreCartList", JSON.stringify(fireCartListCopy))
+
+        updatePokemonInFireStoreCart()
     }
 
     handleCloseModal = () => {
         const { updatePokemonInFireStoreCart } = this.props;
-        const pokemonCartListCopy = []
+        const fireCartListCopy = []
 
-        this.setState({modalOpen: false})
-        updatePokemonInFireStoreCart(pokemonCartListCopy)
+        localStorage.setItem("fireStoreCartList", JSON.stringify(fireCartListCopy))
+
+        this.handleOnClickCheckOut()
+
+        updatePokemonInFireStoreCart()
     }
 
     handleOnClickCheckOut = () => {
+        this.setState({modalOpen: !this.state.modalOpen})
+    }
 
-        this.setState({modalOpen: true})
+    handleClearCart = () => {
+        if(window.confirm("Deseja limpar o Carrinho?")){
+            const fireCartListCopy = []
+
+            localStorage.setItem("fireStoreCartList", JSON.stringify(fireCartListCopy))
+
+            document.location.reload(true)
+
+            updatePokemonInFireStoreCart()
+        }
     }
 
     render(){
-
-        const { fireStoreCartList } = this.props
         const { modalOpen } = this.state
 
+        const fireCartListString = localStorage.getItem("fireStoreCartList")
+
+        let savedFireCartList = JSON.parse(fireCartListString)
+
+        if(!fireCartListString){
+            savedFireCartList = []
+        }
         let mapCartItems;
+
         let buttonRender;
         
-        let totalValue = fireStoreCartList.reduce(getTotal, 0);
+        let clearCartButtonRender;
+
+        if(savedFireCartList.length > 0){
+            clearCartButtonRender = (
+                <ClearCartButton onClickClear={this.handleClearCart}/>
+            )
+        }
+
+        let totalValue = savedFireCartList.reduce(getTotal, 0);
 
         function getTotal(total, pokemon) {
             return total + pokemon.value
@@ -54,12 +91,17 @@ export class FireStoreCartContainer extends React.Component {
 
         let modalRender;
         if(modalOpen === true){
-            modalRender = (<CheckoutModal cartTotalValue={totalValueDiscount.toFixed(2)} open={modalOpen} onClose={this.handleCloseModal}/>)
+            modalRender = (
+                <CheckoutModal 
+                    cartTotalValue={totalValueDiscount.toFixed(2)} 
+                    open={modalOpen} 
+                    onClose={this.handleCloseModal}
+                />)
         } else {
             modalRender = (<></>)
         }
 
-        if(fireStoreCartList.length === 0) {
+        if(savedFireCartList.length === 0) {
             buttonRender = (
                 <StyledCheckoutButton 
                     variant="contained" 
@@ -67,7 +109,7 @@ export class FireStoreCartContainer extends React.Component {
                     Finalizar
                 </StyledCheckoutButton>
             )
-        }else if(fireStoreCartList.length > 0){
+        }else if(savedFireCartList.length > 0){
             buttonRender = (
                 <StyledCheckoutButton 
                     variant="contained" 
@@ -78,10 +120,10 @@ export class FireStoreCartContainer extends React.Component {
             )
         }
 
-        if(fireStoreCartList.length === 0) {
+        if(savedFireCartList.length === 0) {
             mapCartItems = (<CartIsEmptyMessage>Carrinho está vazio!</CartIsEmptyMessage>)
-        } else if (fireStoreCartList.length > 0){
-            mapCartItems = fireStoreCartList.map((item) => (
+        } else if (savedFireCartList.length > 0){
+            mapCartItems = savedFireCartList.map((item) => (
                 <CartItemComponent key={item.id}>
                     <CartItemName>
                         <Text>{item.name}</Text>
@@ -100,6 +142,7 @@ export class FireStoreCartContainer extends React.Component {
             <CartComponent>
                 <CartHeader>
                     <SectionTitle>Carrinho</SectionTitle>
+                    {clearCartButtonRender}
                 </CartHeader>
                 <CartBody>
                     <CartItemsListSection>
@@ -126,7 +169,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    updatePokemonInFireStoreCart: (firePokemon) => dispatch(updatePokemonInFireStoreCart(firePokemon))
+    updatePokemonInFireStoreCart: () => dispatch(updatePokemonInFireStoreCart())
 })
 
 

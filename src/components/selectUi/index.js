@@ -22,7 +22,7 @@ function SelectUI(props) {
             <FormControl className={classes.formControl}>
                 <InputLabel id="selectLabel">{props.label}</InputLabel>
                 <Select labelId="selectLabel" value={props.value} onChange={props.onChange}>
-                  <MenuItem value="Selecione">Selecione</MenuItem>
+                  <MenuItem value="Selecione" disabled hidden>Selecione</MenuItem>
                   {props.menuItemsMap}
                 </Select>
             </FormControl>

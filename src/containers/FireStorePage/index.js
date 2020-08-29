@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import { v4 } from "uuid";
-import { getPokemonByType, updatePokemonInFireStoreCart } from "../../actions";
+import { getPokemonByType, updatePokemonInFireStoreCart, setPokemonByType } from "../../actions";
 import { ProductsComponent, StoreComponent, Main, PagesComponent, PokemonFireCatalog, ProductsComponentHeader, SectionName, OrdernationSection } from "../../style/globalStyled";
 import { orderByList, orderTypeList} from '../ordenationObjects';
 import Footer from "../../components/footer";
@@ -69,7 +69,7 @@ export class FireStore extends React.Component {
     }
 
     addPokemonInCart = ( name, value) => {
-      const { updatePokemonInFireStoreCart, fireStoreCartList } = this.props
+      const { updatePokemonInFireStoreCart } = this.props
 
       const newPokemon = {
         id: v4(),
@@ -77,39 +77,63 @@ export class FireStore extends React.Component {
         value: value
       }
 
-      const pokemonCartListCopy = [...fireStoreCartList, newPokemon];
+      const fireCartListString = localStorage.getItem("fireStoreCartList")
 
-      updatePokemonInFireStoreCart(pokemonCartListCopy)
+      let savedFireCartList = JSON.parse(fireCartListString)
+
+      let fireCartListCopy
+
+      if(!fireCartListString){
+        savedFireCartList = []
+
+        fireCartListCopy = [...savedFireCartList, newPokemon];
+
+        localStorage.setItem("fireStoreCartList", JSON.stringify(fireCartListCopy))
+      }
+
+      fireCartListCopy = [...savedFireCartList, newPokemon];
+
+      localStorage.setItem("fireStoreCartList", JSON.stringify(fireCartListCopy))
+
+      updatePokemonInFireStoreCart()
+    }
+
+    handleGoToWaterStore = () => {
+      const { setPokemonByType, goToWaterStore } = this.props
+      const pokemon = []
+
+      setPokemonByType(pokemon)
+      goToWaterStore()
     }
 
     render(){
-      const { page, orderBy, orderType, search } = this.state
-      const { allFirePokemon, goToWaterStore, goToFireStore } = this.props
+      const { page, orderBy, orderType, search } = this.state;
+      const { allFirePokemon, goToFireStore } = this.props;
 
-      const numberOfPages = allFirePokemon.length / 12;
-
-      const start = (page -1) * 12 
-      const end = start + 12
+      const start = (page -1) * 10;
+      const end = start + 10;
 
       const orderBySelectItem = (orderByList.map((by) => (
         <MenuItem 
-          key={by} 
-          value={by}
-          >{by}
+          key={by.name} 
+          value={by.name}
+        >
+          {by.label}
         </MenuItem>
-      )))
+      )));
 
       const orderTypeSelectItem = (orderTypeList.map((type) => (
         <MenuItem 
           key={type} 
           value={type}
-        >{type}
+        >
+          {type}
         </MenuItem>
-      )))
+      )));
 
       let filterPokemon = allFirePokemon.filter((pokemon) => {
         return pokemon.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-      });
+      });;
 
       let orderedPokemon;
 
@@ -119,7 +143,10 @@ export class FireStore extends React.Component {
           orderedPokemon = filterPokemon.sort((a,b) => (b[orderBy] > a[orderBy] ? 1 : -1))    
       } else {
         orderedPokemon = filterPokemon.sort((a,b) => (a[orderBy] === b[orderBy]  ? 0 : 1))
-      }
+      };
+
+
+      const numberOfPages = orderedPokemon.length / 12;
 
       const paginatedFirePokemonMap = orderedPokemon.slice(start, end);
 
@@ -132,7 +159,7 @@ export class FireStore extends React.Component {
             onClickNext={this.handleNextPage}
             color="#ba501e"
           />
-        )
+        );
       } else if (page >= numberOfPages){
         buttonRender = (
           <PaginationCard
@@ -140,7 +167,7 @@ export class FireStore extends React.Component {
             page={page}
             color="#ba501e"
           />
-        )
+        );
       } else {
         buttonRender = (
           <PaginationCard
@@ -149,8 +176,8 @@ export class FireStore extends React.Component {
             onClickNext={this.handleNextPage}
             color="#ba501e"
           />
-        )
-      }
+        );
+      };
 
       let fireStoreCatalogRender;
 
@@ -158,14 +185,14 @@ export class FireStore extends React.Component {
         <PokemonCard
           key={pokemon.id}
           alt={pokemon.name}
-          image={pokemon.image}
+          image={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
           name={pokemon.name}
           value={pokemon.value}
           color="#d1643b"
           colorHover="#b25533"
           onClickAddButton={() => this.addPokemonInCart(pokemon.name, pokemon.value)}
         />
-      )
+      );
 
       if(filterPokemon.length === 0){
         fireStoreCatalogRender = (<Loader/>)
@@ -179,9 +206,8 @@ export class FireStore extends React.Component {
               {buttonRender}
             </PagesComponent>          
           </>
-
-        )
-      }
+        );
+      };
 
       return(
         <StoreComponent>
@@ -192,7 +218,7 @@ export class FireStore extends React.Component {
             value={search}
             onChange={this.handleOnChangeSearch}
             buttonColor="primary"
-            onClick={goToWaterStore}
+            onClick={this.handleGoToWaterStore}
             placeholder="Charizard, Charmander..."
             fontFamily="'Permanent Marker', cursive"
             inputStyle="outlined"
@@ -207,13 +233,13 @@ export class FireStore extends React.Component {
                 <SectionName>Catálogo</SectionName>
                 <OrdernationSection>
                   <SelectUI 
-                    label="Order by" 
+                    label="Ordenar por" 
                     value={orderBy} 
                     onChange={this.handleOnChangeOrderBy} 
                     menuItemsMap={orderBySelectItem}
                   />
                   <SelectUI 
-                    label="Order type" 
+                    label="Tipo de ordem" 
                     value={orderType} 
                     onChange={this.handleOnChangeOrderType} 
                     menuItemsMap={orderTypeSelectItem}
@@ -227,20 +253,20 @@ export class FireStore extends React.Component {
           <Footer color={"rgba(186, 80, 30, 0.8)"}/>
         </StoreComponent>
       )
-    }
-}
+    };
+};
 
 const mapStateToProps = state => ({
-  allFirePokemon: state.pokemon.allPokemonByType,
-  fireStoreCartList: state.pokemon.fireStoreCartList
-})
+  allFirePokemon: state.pokemon.allPokemonByType
+});
 
 const mapDispatchToProps = dispatch => ({
   getFirePokemon: (typeId) => dispatch(getPokemonByType(typeId)),
-  updatePokemonInFireStoreCart: (pokemon) => dispatch(updatePokemonInFireStoreCart(pokemon)),
+  updatePokemonInFireStoreCart: () => dispatch(updatePokemonInFireStoreCart()),
   goToWaterStore: () => dispatch(push(routes.waterStore)),
-  goToFireStore: () => dispatch(push(routes.home))
-})
+  goToFireStore: () => dispatch(push(routes.home)),
+  setPokemonByType: (pokemon) => dispatch(setPokemonByType(pokemon))
+});
 
 export default connect(
   mapStateToProps,

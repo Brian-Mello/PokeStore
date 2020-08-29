@@ -1,6 +1,6 @@
 export const orderByList = [
-  "value",
-  "name"
+  {name: "value", label: "Valor"},
+  {name: "name", label: "Nome"}
 ]
 
 export const orderTypeList = [

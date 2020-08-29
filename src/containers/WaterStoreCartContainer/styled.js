@@ -16,9 +16,9 @@ export const CartComponent = styled.div `
     }
     @media(max-width: 450px){
         width: 90%;
-        min-height: 90%;
+        min-height: 80%;
         position: fixed;
-        top: 30px;
+        top: 10px;
     }
 `
 

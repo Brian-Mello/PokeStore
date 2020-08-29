@@ -35,9 +35,11 @@ export const PreviousPageButton = styled.button `
     position: absolute;
     top: 27px;
     left: 10px;
+    transition: all 0.2s;
     :hover{
         cursor: pointer;
         background-color: #dfe1e5;
+        transform: scale(1.1);
     }
 `
 
@@ -55,9 +57,11 @@ export const NextPageButton = styled.button `
     position: absolute;
     top: 27px;
     right: 10px;
+    transition: all 0.2s;
     :hover{
         cursor: pointer;
         background-color: #dfe1e5;
+        transform: scale(1.1);
     }
 `
 

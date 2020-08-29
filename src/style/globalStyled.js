@@ -27,7 +27,7 @@ export const Main = styled.div `
 
 export const ProductsComponent = styled.div `
     width: ${props => props.widthSize};
-    min-height: 100vh;
+    height: 100%;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
@@ -69,7 +69,7 @@ export const PokemonFireCatalog = styled.div `
     min-height: 75%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     justify-items: center;
     align-content: center;
@@ -84,17 +84,17 @@ export const PokemonFireCatalog = styled.div `
     }
     @media(max-width: 660px){
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(6, 1fr);
+        grid-template-rows: repeat(5, 1fr);
     }
     @media(max-width: 500px){
         grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(12, 1fr);
+        grid-template-rows: repeat(10, 1fr);
     }
 `
 
 export const PokemonWaterCatalog = styled.div `
     width: 100%;
-    min-height: 80%;
+    min-height: 100%;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -143,4 +143,12 @@ export const SectionName = styled.h1 `
 export const Icon = styled.img `
     width: 24px;
     height: 24px;
+`
+
+export const Text = styled.p `
+    max-width: 100px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `

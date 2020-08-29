@@ -35,16 +35,16 @@ export const setPokemonByType = (pokemon) => ({
     }
 })
 
-export const updatePokemonInFireStoreCart = (firePokemon) => ({
+export const updatePokemonInFireStoreCart = () => ({
     type: "UPDATE_POKEMON_IN_FIRE_STORE_CART",
     payload: {
-        firePokemon
+        
     }
 })
 
-export const updatePokemonInWaterStoreCart = (waterPokemon) => ({
+export const updatePokemonInWaterStoreCart = () => ({
     type: "UPDATE_POKEMON_IN_WATER_STORE_CART",
     payload: {
-        waterPokemon
+        
     }
 })

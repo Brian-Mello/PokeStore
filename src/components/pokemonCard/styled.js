@@ -15,6 +15,10 @@ export const PokemonCardComponent = styled.div `
     padding: 10px 10px 5px 10px;
     background-color: #ffffff;
     box-shadow: 1px 1px 5px #b7b7b7;
+    transition: transform 0.2s;
+    :hover {
+        transform: scale(1.1);
+    }
     @media(max-width: 450px){
         max-width: 100%;
         min-height: 50px;
@@ -28,6 +32,11 @@ export const PokemonImage = styled.img `
     background-color: #ffffff;
     border-radius: 5px;
     border: 1px solid #c7c7c7;
+    transition: transform 0.2s;
+    cursor: zoom-in;
+    :hover {
+        transform: scale(1.5);
+    }
     @media(max-width: 450px){
         max-width: 40%;
         height: 100%;
@@ -113,7 +122,8 @@ export const PokemonCardButton = styled.button `
     :hover {
         cursor: pointer;
         background-color: ${props => props.colorHover};
-        padding: 0 45px;      
+        padding: 0 45px;   
+        transform: scale(1.1);   
     }
     @media(max-width: 450px){
         height: 100%;
@@ -122,6 +132,7 @@ export const PokemonCardButton = styled.button `
 `
 
 export const Text = styled.p `
+    max-width: 100px;
     margin: 0;
 `
 

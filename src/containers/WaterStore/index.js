@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import { v4 } from "uuid";
-import { getPokemonByType, updatePokemonInWaterStoreCart } from "../../actions";
+import { getPokemonByType, setPokemonByType, updatePokemonInWaterStoreCart } from "../../actions";
 import { ProductsComponent, StoreComponent, Main, PagesComponent, PokemonWaterCatalog, ProductsComponentHeader, SectionName, OrdernationSection, Icon } from "../../style/globalStyled";
 import { orderByList, orderTypeList} from '../ordenationObjects';
 import Footer from "../../components/footer";
@@ -69,7 +69,7 @@ export class WaterStore extends React.Component {
     }
 
     addPokemonInCart = ( name, value) => {
-        const { updatePokemonInWaterStoreCart, waterStoreCartList } = this.props
+        const { updatePokemonInWaterStoreCart } = this.props
 
         const newPokemon = {
             id: v4(),
@@ -77,9 +77,25 @@ export class WaterStore extends React.Component {
             value: value
         }
 
-        const pokemonCartListCopy = [...waterStoreCartList, newPokemon];
+        const waterCartListString = localStorage.getItem("waterStoreCartList")
 
-        updatePokemonInWaterStoreCart(pokemonCartListCopy)
+        let savedWaterCartList = JSON.parse(waterCartListString)
+
+        let waterCartListCopy
+
+        if(!waterCartListString) {
+            savedWaterCartList = []
+
+            waterCartListCopy = [...savedWaterCartList, newPokemon];
+
+            localStorage.setItem("waterStoreCartList", JSON.stringify(waterCartListCopy))
+        }
+
+        waterCartListCopy = [...savedWaterCartList, newPokemon];
+
+        localStorage.setItem("waterStoreCartList", JSON.stringify(waterCartListCopy))
+
+        updatePokemonInWaterStoreCart()
     }
 
     handleOnChangeSearch = (event) => {
@@ -90,20 +106,23 @@ export class WaterStore extends React.Component {
         this.setState({ search: event.target.value })
     };
 
+    handleGoToFireStore = () => {
+      const { setPokemonByType, goToFireStore } = this.props
+      const pokemon = []
+
+      setPokemonByType(pokemon)
+      goToFireStore()
+    }
+
     render(){
         const { search, orderBy, orderType, page, cartStatus } = this.state;
-        const { goToFireStore, allWaterPokemon } = this.props
-
-        const numberOfPages = allWaterPokemon.length / 12;
-
-        const start = (page -1) * 12 
-        const end = start + 12
+        const { allWaterPokemon } = this.props
         
         const orderBySelectItem = (orderByList.map((by) => (
             <MenuItem
-                key={by} 
-                value={by}
-                >{by}
+                key={by.name} 
+                value={by.name}
+                >{by.label}
             </MenuItem>
         )))
         const orderTypeSelectItem = (orderTypeList.map((type) => (
@@ -127,6 +146,11 @@ export class WaterStore extends React.Component {
         } else {
             orderedPokemon = filterPokemon.sort((a,b) => (a[orderBy] === b[orderBy]  ? 0 : 1))
         }
+
+        const numberOfPages = orderedPokemon.length / 12;
+
+        const start = (page -1) * 12 
+        const end = start + 12
 
         const paginatedFirePokemonMap = orderedPokemon.slice(start, end);
 
@@ -167,7 +191,7 @@ export class WaterStore extends React.Component {
                 <PokemonCard
                     key={pokemon.id}
                     alt={pokemon.name}
-                    image={pokemon.image}
+                    image={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
                     name={pokemon.name}
                     value={pokemon.value}
                     color="#73abc7"
@@ -200,12 +224,12 @@ export class WaterStore extends React.Component {
                     value={search}
                     onChange={this.handleOnChangeSearch}
                     buttonColor="secondary"
-                    onClick={goToFireStore}
+                    onClick={this.handleGoToFireStore}
                     placeholder="Wartortle, Blastoise..."
                     fontFamily="'Ranchers', cursive"
                     inputStyle="standard"
                     icon={<Icon src={waterLogo}/>}
-                    goToHome={goToFireStore}
+                    goToHome={this.handleGoToFireStore}
                 />
                 <Main>
                     <ProductsComponent 
@@ -215,13 +239,13 @@ export class WaterStore extends React.Component {
                             <SectionName>Catálogo</SectionName>
                             <OrdernationSection>
                                 <SelectUI 
-                                    label="Order by" 
+                                    label="Ordernar por" 
                                     value={orderBy} 
                                     onChange={this.handleOnChangeOrderBy} 
                                     menuItemsMap={orderBySelectItem}
                                 />
                                 <SelectUI 
-                                    label="Order type" 
+                                    label="Tipo de ordem" 
                                     value={orderType} 
                                     onChange={this.handleOnChangeOrderType} 
                                     menuItemsMap={orderTypeSelectItem}
@@ -241,14 +265,14 @@ export class WaterStore extends React.Component {
 
 const mapStateToProps = state => ({
     allWaterPokemon: state.pokemon.allPokemonByType,
-    pages: state.pokemon.count,
     waterStoreCartList: state.pokemon.waterStoreCartList
 })
 
 const mapDispatchToProps = dispatch => ({
     getWaterPokemon: (typeId) => dispatch(getPokemonByType(typeId)),
-    updatePokemonInWaterStoreCart: (waterPokemon) => dispatch(updatePokemonInWaterStoreCart(waterPokemon)),
-    goToFireStore: () => dispatch(push(routes.home))
+    updatePokemonInWaterStoreCart: () => dispatch(updatePokemonInWaterStoreCart()),
+    goToFireStore: () => dispatch(push(routes.home)),
+    setPokemonByType: (pokemon) => (setPokemonByType(pokemon))
 })
 
 

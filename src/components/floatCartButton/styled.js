@@ -21,8 +21,9 @@ export const CartButton = styled.button `
     right: 30px;
     border-radius: 10px;
     font-family: 'Manrope', sans-serif;
-    transition: all 0.5s;
+    transition: all 0.2s;
     :hover{
+        transform: scale(1.2);
         cursor: pointer;
         background-color: rgba(17,17,17, 0.9);
     }

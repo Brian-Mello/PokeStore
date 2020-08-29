@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {updatePokemonInWaterStoreCart } from '../../actions';
-import { Text } from '../../components/pokemonCard/styled';
 import CloseIcon from '@material-ui/icons/Close';
-import { StyledCheckoutButton } from './styled'
+import { StyledCheckoutButton } from './styled';
+import { Text } from '../../style/globalStyled'
 import { CartComponent, SectionTitle, CartHeader, CartItemsListSection, CartPaymentSection, CartItemComponent, CartIsEmptyMessage, CartItemDeleteButton, PaymentValueSection, PaymentButtonSection, CartItemName, CartItemValue } from './styled';
 import CheckoutModal from '../../components/checkoutModal';
+import ClearCartButton from '../../components/ClearCartButton';
 
 export class WaterStoreCartContainer extends React.Component {
     constructor(props){
@@ -15,51 +16,93 @@ export class WaterStoreCartContainer extends React.Component {
         }
     }
 
-    handleCloseModal = () => {
-        const { updatePokemonInWaterStoreCart } = this.props;
-        const pokemonCartListCopy = []
-
-        this.setState({modalOpen: false})
-        updatePokemonInWaterStoreCart(pokemonCartListCopy)
-    }
-
     removePokemonFromCart = (idToRemove) => {
-        const { waterStoreCartList, updatePokemonInWaterStoreCart } = this.props
-        const pokemonCartListCopy = [...waterStoreCartList]
+        const {  updatePokemonInWaterStoreCart } = this.props
 
-        pokemonCartListCopy.splice(idToRemove, 1)
-        updatePokemonInWaterStoreCart(pokemonCartListCopy)
+        const waterCartListString = localStorage.getItem("waterStoreCartList")
+
+        const savedWaterCartList = JSON.parse(waterCartListString)
+
+        const waterCartListCopy = [...savedWaterCartList]
+
+        waterCartListCopy.splice(idToRemove, 1)
+        
+        localStorage.setItem("waterStoreCartList", JSON.stringify(waterCartListCopy))
+
+        updatePokemonInWaterStoreCart()
     }
 
     handleOnClickCheckOut = () => {
-        this.setState({modalOpen: true})
+        this.setState({modalOpen: !this.state.modalOpen})
+    }
+
+    handleCloseModal = () => {
+        const { updatePokemonInWaterStoreCart } = this.props;
+        const waterCartListCopy = []
+
+        localStorage.setItem("waterStoreCartList", JSON.stringify(waterCartListCopy))
+
+        this.handleOnClickCheckOut()
+
+        updatePokemonInWaterStoreCart()
+    }
+    
+    handleClearCart = () => {
+        if(window.confirm("Deseja limpar o Carrinho?")){
+            const fireCartListCopy = []
+
+            localStorage.setItem("waterStoreCartList", JSON.stringify(fireCartListCopy))
+
+            document.location.reload(true)
+
+            updatePokemonInWaterStoreCart()
+        }
     }
 
     render(){
-
-        const { waterStoreCartList } = this.props;
         const { modalOpen } = this.state
 
-        let mapCartItems;
-        let buttonRender;
+        const waterCartListString = localStorage.getItem("waterStoreCartList")
 
-        let totalValue = waterStoreCartList.reduce(getTotal, 0);
+        let savedWaterCartList = JSON.parse(waterCartListString)
+
+        if(!waterCartListString){
+            savedWaterCartList = []
+        }
+
+        let totalValue = savedWaterCartList.reduce(getTotal, 0);
 
         function getTotal(total, pokemon) {
             return total + pokemon.value
         }
 
+        let mapCartItems;
+
+        let buttonRender;
 
         let totalValueDiscount = totalValue * 0.10
 
+        let clearCartButtonRender;
+
+        if(savedWaterCartList.length > 0){
+            clearCartButtonRender = (
+                <ClearCartButton onClickClear={this.handleClearCart}/>
+            )
+        }
+
         let modalRender;
         if(modalOpen === true){
-            modalRender = (<CheckoutModal cartTotalValue={totalValueDiscount.toFixed(2)} open={modalOpen} onClose={this.handleCloseModal}/>)
+            modalRender = (
+                <CheckoutModal 
+                    cartTotalValue={totalValueDiscount.toFixed(2)} 
+                    open={modalOpen} 
+                    onClose={this.handleCloseModal}
+                />)
         } else {
             modalRender = (<></>)
         }
 
-        if(waterStoreCartList.length === 0) {
+        if(savedWaterCartList.length === 0) {
             buttonRender = (
                 <StyledCheckoutButton 
                     variant="contained" 
@@ -67,7 +110,7 @@ export class WaterStoreCartContainer extends React.Component {
                     Finalizar
                 </StyledCheckoutButton>
             )
-        }else if(waterStoreCartList.length > 0){
+        }else if(savedWaterCartList.length > 0){
             buttonRender = (
                 <StyledCheckoutButton 
                     variant="contained" 
@@ -78,10 +121,10 @@ export class WaterStoreCartContainer extends React.Component {
             )
         }
 
-        if(waterStoreCartList.length === 0) {
+        if(savedWaterCartList.length === 0) {
             mapCartItems = (<CartIsEmptyMessage>Carrinho está vazio!</CartIsEmptyMessage>)
-        } else if (waterStoreCartList.length > 0){
-            mapCartItems = waterStoreCartList.map((item) => (
+        } else if (savedWaterCartList.length > 0){
+            mapCartItems = savedWaterCartList.map((item) => (
                 <CartItemComponent key={item.id}>
                     <CartItemName>
                         <Text>{item.name}</Text>
@@ -100,6 +143,7 @@ export class WaterStoreCartContainer extends React.Component {
             <CartComponent>
                 <CartHeader>
                     <SectionTitle>Carrinho</SectionTitle>
+                    {clearCartButtonRender}
                 </CartHeader>
                 <CartItemsListSection>
                     {mapCartItems}
