@@ -1,5 +1,5 @@
-# B2W PokeStore Front-end
-Projeto feito para a B2W para desenvolvedores Frontend
+# PokeStore
+Projeto Frontend Simulando uma loja para compra de Pokemon.
 
 ## STACK
 O Frontend web desse projeto teve seus arquivos divididos em seus seções, explicadas a seguir. `Components` onde são guardados os inputs, cards de post, cards de comentários e afins. Os `Containers`
