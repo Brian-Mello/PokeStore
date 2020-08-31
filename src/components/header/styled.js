@@ -9,6 +9,7 @@ export const HeaderComponent = styled.header `
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: ${props => props.gradient};
     background-color: ${props => props.color};  
     padding: 0 20px;
     @media(max-width: 1000px){
@@ -26,7 +27,6 @@ export const HeaderLogoComponent = styled.div `
     align-items: center;
     @media (max-width: 1000px){
         padding: 0;
-        justify-content: center;
         width: 100%;
     }
 `
@@ -65,6 +65,7 @@ export const StyledTextfield = styled(TextField)`
     text-decoration: none;
     border: none;
     color: white;
+    outline: none;
 `
 
 export const Logo = styled.div `
@@ -72,7 +73,7 @@ export const Logo = styled.div `
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     font-size: 25px;
     font-family: ${props => props.fontFamily};
     :hover {
@@ -93,7 +94,7 @@ export const HeaderMenu = styled.div `
 `
 
 export const Title = styled.h1 `
-    font-weight: bold;
+    font-weight: bolder;
     margin: 0;
     font-size: 25px;
 `

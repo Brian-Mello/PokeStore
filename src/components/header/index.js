@@ -6,7 +6,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 function Header(props) {
     return (
-        <HeaderComponent color={props.color}>
+        <HeaderComponent gradient={props.gradient} color={props.color}>
             <HeaderLogoComponent>
                 <Logo onClick={props.goToHome} fontFamily={props.fontFamily}>
                     <Title>{props.pageName}</Title>
@@ -31,7 +31,7 @@ function Header(props) {
                 />
             </HeaderSearchComponent>
             <HeaderMenuComponent>
-                <MaterialButton variant="contained" color={props.buttonColor} onClick={props.onClick}>{props.buttonText}<NavigateNextIcon/></MaterialButton>
+                { props.buttonText && <MaterialButton variant="contained" color={props.buttonColor} onClick={props.onClick}>{props.buttonText}<NavigateNextIcon/></MaterialButton> }
             </HeaderMenuComponent>
         </HeaderComponent>
     )

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StoreComponent = styled.div `
     width: 100%;
+    height: 100vh;
     min-height: 100vh;
     min-width: 300px;
     display: flex;
@@ -12,9 +13,9 @@ export const StoreComponent = styled.div `
 `
 export const Main = styled.div `
     width: 100%;
-    min-height: 85%;
+    height: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;   
     padding: 20px 0 0 0;
     background-color: #ebebeb;
@@ -27,7 +28,7 @@ export const Main = styled.div `
 
 export const ProductsComponent = styled.div `
     width: ${props => props.widthSize};
-    height: 100%;
+    min-height: 100%;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
